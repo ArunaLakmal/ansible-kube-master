@@ -1,0 +1,5 @@
+---
+# tasks file for lib-install
+- import_tasks: download_libs.yaml
+- import_tasks: extract_libs.yaml
+- import_tasks: install_libs.yaml

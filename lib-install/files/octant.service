@@ -1,0 +1,17 @@
+[Unit]
+Description=octant
+
+[Service]
+Environment="HOME=/home/ec2-user"
+Environment="OCTANT_ACCEPTED_HOSTS=$(curl http://169.254.169.254/latest/meta-data/local-ipv4)"
+Environment="KUBECONFIG=/home/ec2-user/.kube/config"
+Environment="OCTANT_LISTENER_ADDR=0.0.0.0:8900"
+Environment="OCTANT_DISABLE_OPEN_BROWSER=true"
+Environment="PATH=/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
+WorkingDirectory=/usr/bin/
+ExecStart=/usr/bin/octant
+Type=simple
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

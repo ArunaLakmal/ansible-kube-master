@@ -1,0 +1,15 @@
+---
+- name: Extract helm3 libraries
+  unarchive:
+    src: /tmp/helm-v3.3.1-linux-amd64.tar.gz
+    dest: /tmp
+
+- name: Extract etcdctl
+  unarchive:
+    src: /tmp/etcd-v3.4.13-linux-amd64.tar.gz
+    dest: /tmp
+
+- name: Extract Octant
+  unarchive:
+    src: /tmp/octant_0.15.0_Linux-64bit.tar.gz
+    dest: /tmp
