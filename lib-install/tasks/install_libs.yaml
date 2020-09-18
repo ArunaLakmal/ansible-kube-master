@@ -37,7 +37,15 @@
     enabled: yes
     masked: no
 
-- name: Make sure octant service is running
+- name: make sure octant service is running
   systemd:
     state: started
     name: octant
+
+- name: install fluxctl
+  copy: 
+    src: /tmp/fluxctl_linux_amd64
+    dest: /usr/bin/fluxctl
+    owner: ec2-user
+    group: ec2-user
+    mode: '0755'
