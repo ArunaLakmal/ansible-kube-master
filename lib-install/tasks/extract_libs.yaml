@@ -1,8 +1,9 @@
 ---
 - name: Extract helm3 libraries
   unarchive:
-    src: /tmp/helm-v3.3.1-linux-amd64.tar.gz
+    src: "/tmp/helm-v{{ hel.version }}-linux-amd64.tar.gz"
     dest: /tmp
+  when: "{{ helm.enabled }} == true"
 
 - name: Extract etcdctl
   unarchive:

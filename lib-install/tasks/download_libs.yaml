@@ -1,9 +1,10 @@
 ---
 - name: download helm3
   get_url:
-    url: https://get.helm.sh/helm-v3.3.1-linux-amd64.tar.gz
+    url: "https://get.helm.sh/helm-v{{ helm.version }}-linux-amd64.tar.gz"
     dest: /tmp
     mode: '0740'
+  when: "{{ helm.enabled }} == true"
 
 - name: download etcdctl
   get_url:
