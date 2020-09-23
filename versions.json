@@ -2,5 +2,17 @@
     "helm": {
         "enabled": false,
         "version": "2.12.1"
+    },
+    "etcdctl": {
+        "enabled": true,
+        "version": "3.4.13"
+    },
+    "octant": {
+        "enabled": true,
+        "version": "0.15.0"
+    },
+    "fluxctl": {
+        "enabled": true,
+        "version": "1.20.2"
     }
 }

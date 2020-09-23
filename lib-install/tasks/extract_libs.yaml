@@ -1,16 +1,18 @@
 ---
-- name: Extract helm3 libraries
+- name: Extract helm3
   unarchive:
     src: "/tmp/helm-v{{ helm.version }}-linux-amd64.tar.gz"
     dest: /tmp
-  when: "{{ helm.enabled }} == true"
+  when: "helm.enabled == true"
 
 - name: Extract etcdctl
   unarchive:
-    src: /tmp/etcd-v3.4.13-linux-amd64.tar.gz
+    src: /tmp/etcd-v{{ etcdctl.version }}-linux-amd64.tar.gz
     dest: /tmp
+  when: "etcdctl.enabled == true"
 
-- name: Extract Octant
+- name: Extract octant
   unarchive:
-    src: /tmp/octant_0.15.0_Linux-64bit.tar.gz
+    src: /tmp/octant_{{ octant.version }}_Linux-64bit.tar.gz
     dest: /tmp
+  when: "octant.enabled == true"
