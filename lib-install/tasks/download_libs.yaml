@@ -1,24 +1,28 @@
 ---
 - name: download helm3
   get_url:
-    url: https://get.helm.sh/helm-v3.3.1-linux-amd64.tar.gz
+    url: "https://get.helm.sh/helm-v{{ helm.version }}-linux-amd64.tar.gz"
     dest: /tmp
     mode: '0740'
+  when: "helm.enabled == true"
 
 - name: download etcdctl
   get_url:
-    url: https://github.com/etcd-io/etcd/releases/download/v3.4.13/etcd-v3.4.13-linux-amd64.tar.gz
+    url: https://github.com/etcd-io/etcd/releases/download/v{{ etcdctl.version }}/etcd-v{{ etcdctl.version }}-linux-amd64.tar.gz
     dest: /tmp
     mode: '0740'
+  when: "etcdctl.enabled == true"
 
-- name: download Octant
+- name: download octant
   get_url:
-    url: https://github.com/vmware-tanzu/octant/releases/download/v0.15.0/octant_0.15.0_Linux-64bit.tar.gz
+    url: https://github.com/vmware-tanzu/octant/releases/download/v{{ octant.version }}/octant_{{ octant.version }}_Linux-64bit.tar.gz
     dest: /tmp
     mode: '0740'
+  when: "octant.enabled == true"
 
 - name: download fluxctl
   get_url:
-    url: https://github.com/fluxcd/flux/releases/download/1.20.2/fluxctl_linux_amd64
+    url: https://github.com/fluxcd/flux/releases/download/{{ fluxctl.version }}/fluxctl_linux_amd64
     dest: /tmp
     mode: '0755'
+  when: "fluxctl.enabled == true"

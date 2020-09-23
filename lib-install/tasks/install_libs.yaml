@@ -6,22 +6,25 @@
     owner: ec2-user
     group: ec2-user
     mode: '0744'
+  when: "helm.enabled ==  true"
 
 - name: install etcdctl
   copy:
-    src: /tmp/etcd-v3.4.13-linux-amd64/etcdctl
+    src: /tmp/etcd-v{{ etcdctl.version }}-linux-amd64/etcdctl
     dest: /usr/bin
     owner: ec2-user
     group: ec2-user
     mode: '0744'
+  when: "etcdctl.enabled == true"
 
 - name: install octant
   copy:
-    src: /tmp/octant_0.15.0_Linux-64bit/octant
+    src: /tmp/octant_{{ octant.version }}_Linux-64bit/octant
     dest: /usr/bin
     owner: root
     group: root
     mode: '0744'
+  when: "octant.enabled == true"
 
 - name: setting up octant service
   copy:
@@ -30,17 +33,20 @@
     owner: root
     group: root
     mode: '0755'
+  when: "octant.enabled == true"
 
 - name: enable service octannt and ensure it is not masked
   systemd:
     name: octant
     enabled: yes
     masked: no
+  when: "octant.enabled == true"
 
 - name: make sure octant service is running
   systemd:
     state: started
     name: octant
+  when: "octant.enabled == true"
 
 - name: install fluxctl
   copy: 
@@ -49,3 +55,4 @@
     owner: ec2-user
     group: ec2-user
     mode: '0755'
+  when: "fluxctl.enabled == true"
